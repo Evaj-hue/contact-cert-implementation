@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUPIX Solutions</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons (Added for contact section) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/scroll-animations.css">
+    <link rel="stylesheet" href="section/home/style.css">
+    <link rel="stylesheet" href="section/detail/style.css">
+    <link rel="stylesheet" href="section/featured/style.css">
+    <link rel="stylesheet" href="section/gridbox/style.css">
+    <link rel="stylesheet" href="section/about/style.css">
+    <link rel="stylesheet" href="section/services/style.css">
+    <link rel="stylesheet" href="section/contact/style.css">
+    
+    <!-- Contact Form Specific Styles (Add this or merge into contact/style.css) -->
+    <link rel="stylesheet" href="section/contact/contact-form.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">FUPIX<span class="text-accent"> SOLUTIONS</span></a>
+            <div class="nav-links">
+                <a href="games">Games</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="certification">Certification</a>
+            </div>
+            <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
+                <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="scroll-container">
+
+        <!-- ============================================
+             SECTION: HOME
+             ============================================ -->
+        <section id="home" class="viewport-section">
+            <canvas id="particleCanvas"></canvas>
+            <div class="home-layout" id="homeUI">
+                <div class="text-area" id="textTarget"></div>
+                <div class="logo-area">
+                    <img src="./img/fplogo6.png" alt="FUPIX Logo" class="static-logo logo-dark">
+                    <img src="./img/fplogo5.png" alt="FUPIX Logo" class="static-logo logo-light">
+                </div>
+            </div>
+            <div class="home-scroll-indicator" id="homeScrollInd">
+                <span class="scroll-text">Scroll Down</span>
+                <div class="chevron"></div>
+                <div class="chevron second"></div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION: DETAIL
+             ============================================ -->
+        <section id="detail" class="viewport-section" data-section-state="entering">
+            <canvas id="plexusCanvas"></canvas>
+            <div class="content-wrapper centered detail-content">
+                <h1 class="detail-title" data-animate="fade-up">
+                    PLAY. COMPETE. WIN <span class="accent-dash">—</span><br>
+                    LIVE RACING<br>
+                    EXPERIENCES
+                </h1>
+                <p class="detail-description" data-animate="fade-up" data-animate-delay="150">
+                    We design, operate and support live online racing experiences that combine
+                    competitive gameplay, secure systems, and continuous live operations for
+                    players and operators.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION: FEATURED
+             ============================================ -->
+        <section id="featured" class="viewport-section" data-section-state="entering">
+            <div class="content-wrapper">
+                <span class="section-label text-gold" data-animate="fade-up">02 // FEATURED PROJECT</span>
+                <div class="showcase-grid">
+                    <div class="showcase-info" data-animate="fade-up" data-animate-delay="100">
+                        <h2 class="text-accent">Cyber Drifter</h2>
+                        <p>The award-winning open world RPG that redefined the genre. Experience zero-latency combat.</p>
+                        <button class="btn btn-glow">Watch Trailer</button>
+                    </div>
+                    <div class="showcase-visual" data-animate="fade-up" data-animate-delay="200">
+                        <div class="placeholder-art">GAME ART</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION: ABOUT (3D Grid Background)
+             ============================================ -->
+        <section id="about" class="viewport-section gridbox-section" data-section-state="entering">
+            <div class="gridbox-content-wrapper">
+                <div class="about-card" data-animate="zoom-in">
+                    <div class="about-hint">
+                        <span class="about-hint-text">Hover for details</span>
+                        <span class="about-hint-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12l7 7 7-7"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="about-main">
+                        <h2 class="about-title">About Us</h2>
+                        <p class="about-description">FUPIX SOLUTIONS CORPORATION is a leading provider of technology solutions, committed to delivering excellence and innovation that empowers our clients.</p>
+                    </div>
+                    <div class="about-details">
+                        <div class="about-divider">
+                            <span class="about-divider-line"></span>
+                            <span class="about-divider-text">Company Information</span>
+                            <span class="about-divider-line"></span>
+                        </div>
+                        <ul class="about-info-list">
+                            <li class="about-info-item">
+                                <span class="about-info-label">Company Name</span>
+                                <span class="about-info-value">FUPIX SOLUTIONS CORPORATION</span>
+                            </li>
+                            <li class="about-info-item">
+                                <span class="about-info-label">Establishment</span>
+                                <span class="about-info-value">2024</span>
+                            </li>
+                            <li class="about-info-item">
+                                <span class="about-info-label">President</span>
+                                <span class="about-info-value">LUKE B. LIM</span>
+                            </li>
+                            <li class="about-info-item">
+                                <span class="about-info-label">Industry</span>
+                                <span class="about-info-value">Information Technology, Gaming</span>
+                            </li>
+                            <li class="about-info-item">
+                                <span class="about-info-label">Headquarters</span>
+                                <span class="about-info-value">7E, Cyber One Building, 11 Eastwood Avenue, Quezon City</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION: VISION (3D Grid Background)
+             ============================================ -->
+        <section id="vision" class="viewport-section gridbox-section" data-section-state="entering">
+            <div class="gridbox-content-wrapper">
+                <div class="mv-card vision-card" data-animate="zoom-in" data-animate-delay="100">
+                    <div class="mv-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="mv-title">Our Vision</h3>
+                    <div class="mv-divider"></div>
+                    <p class="mv-description">To become the leading integrated technology company in the Philippines' entertainment and online gaming sector.</p>
+                    <div class="mv-details">
+                        <div class="mv-details-divider">
+                            <span class="mv-details-divider-line"></span>
+                            <span class="mv-details-divider-text">Our Pillars</span>
+                            <span class="mv-details-divider-line"></span>
+                        </div>
+                        <ul class="mv-info-list">
+                            <li class="mv-info-item">
+                                <span class="mv-info-label">Expertise</span>
+                                <span class="mv-info-value">Our team comprises highly skilled professionals with extensive experience in IT and online gaming.</span>
+                            </li>
+                            <li class="mv-info-item">
+                                <span class="mv-info-label">Reliability</span>
+                                <span class="mv-info-value">We ensure consistent and dependable service to keep your gaming platforms running smoothly.</span>
+                            </li>
+                            <li class="mv-info-item">
+                                <span class="mv-info-label">Innovation</span>
+                                <span class="mv-info-value">We leverage the latest technologies to provide cutting-edge solutions.</span>
+                            </li>
+                            <li class="mv-info-item">
+                                <span class="mv-info-label">Customer Focus</span>
+                                <span class="mv-info-value">We prioritize our clients' needs and work closely with them to achieve their goals.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION: MISSION (3D Grid Background)
+             ============================================ -->
+        <section id="mission" class="viewport-section gridbox-section" data-section-state="entering">
+            <div class="gridbox-content-wrapper">
+                <div class="mv-card mission-card" data-animate="zoom-in" data-animate-delay="100">
+                    <div class="mv-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="6"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="mv-title">Our Mission</h3>
+                    <div class="mv-divider"></div>
+                    <p class="mv-description">To deliver innovative and reliable technology solutions that empower businesses to achieve their goals, while fostering a culture of excellence, integrity, and continuous improvement.</p>
+                    <div class="mv-details">
+                        <div class="mv-details-divider">
+                            <span class="mv-details-divider-line"></span>
+                            <span class="mv-details-divider-text">Our Core Values</span>
+                            <span class="mv-details-divider-line"></span>
+                        </div>
+                        <ul class="mv-info-list">
+                            <li class="mv-info-item">
+                                <span class="mv-info-label">Excellence</span>
+                                <span class="mv-info-value">We strive for the highest standards in every solution we deliver to our clients.</span>
+                            </li>
+                            <li class="mv-info-item">
+                                <span class="mv-info-label">Integrity</span>
+                                <span class="mv-info-value">We conduct business with honesty, transparency, and ethical practices.</span>
+                            </li>
+                            <li class="mv-info-item">
+                                <span class="mv-info-label">Empowerment</span>
+                                <span class="mv-info-value">We enable businesses to reach their full potential through innovative technology.</span>
+                            </li>
+                            <li class="mv-info-item">
+                                <span class="mv-info-label">Improvement</span>
+                                <span class="mv-info-value">We constantly evolve and enhance our services to meet changing market demands.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION: SERVICES (3D Grid Background)
+             ============================================ -->
+        <section id="services" class="viewport-section gridbox-section" data-section-state="entering">
+            <div class="services-container services-container-wide">
+                <div class="honeycomb-layout">
+                    
+                    <!-- Connectors -->
+                    <div class="honeycomb-connectors">
+                        <div class="connector connector-top-left">
+                            <div class="connector-line"></div>
+                            <div class="connector-orb"></div>
+                        </div>
+                        <div class="connector connector-top-right">
+                            <div class="connector-line"></div>
+                            <div class="connector-orb"></div>
+                        </div>
+                        <div class="connector connector-left-vertical">
+                            <div class="connector-line"></div>
+                            <div class="connector-orb"></div>
+                        </div>
+                        <div class="connector connector-right-vertical">
+                            <div class="connector-line"></div>
+                            <div class="connector-orb"></div>
+                        </div>
+                        <div class="connector connector-center-left">
+                            <div class="connector-line"></div>
+                            <div class="connector-orb"></div>
+                        </div>
+                        <div class="connector connector-center-right">
+                            <div class="connector-line"></div>
+                            <div class="connector-orb"></div>
+                        </div>
+                        <div class="connector connector-bottom-horizontal">
+                            <div class="connector-orb connector-orb-left"></div>
+                            <div class="connector-line"></div>
+                            <div class="connector-orb connector-orb-right"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 1 - Top Center -->
+                    <div class="honeycomb-card honeycomb-card-1">
+                        <div class="service-item" 
+                             data-animate="scale-up" 
+                             data-animate-delay="100"
+                             data-description="A fully digital 24-hour horse racing platform delivering real-time gameplay and race events.">
+                            <div class="service-icon-wrapper">
+                                <span class="service-icon">🏇</span>
+                            </div>
+                            <span class="service-title">24/7 Digital Racing</span>
+                            <div class="service-divider"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 - Left Middle -->
+                    <div class="honeycomb-card honeycomb-card-2">
+                        <div class="service-item" 
+                             data-animate="scale-up" 
+                             data-animate-delay="200"
+                             data-description="Accurate odds, live betting data, and instant race results to ensure transparency and trust.">
+                            <div class="service-icon-wrapper">
+                                <span class="service-icon">📊</span>
+                            </div>
+                            <span class="service-title">Real-time Betting</span>
+                            <div class="service-divider"></div>
+                        </div>
+                    </div>
+
+                    <!-- Center Title -->
+                    <div class="honeycomb-center" data-animate="zoom-in">
+                        <h2 class="services-title">Our</h2>
+                        <h2 class="services-title services-title-second">Solutions</h2>
+                        <p class="services-subtitle">End-to-end digital horse racing and betting platform solutions.</p>
+                    </div>
+
+                    <!-- Card 5 - Right Middle -->
+                    <div class="honeycomb-card honeycomb-card-5">
+                        <div class="service-item" 
+                             data-animate="scale-up" 
+                             data-animate-delay="300"
+                             data-description="Designed to support both Philippines and international gaming markets.">
+                            <div class="service-icon-wrapper">
+                                <span class="service-icon">🌏</span>
+                            </div>
+                            <span class="service-title">Global-Ready Platform</span>
+                            <div class="service-divider"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 - Bottom Left -->
+                    <div class="honeycomb-card honeycomb-card-3">
+                        <div class="service-item" 
+                             data-animate="scale-up" 
+                             data-animate-delay="400"
+                             data-description="Stable, high-definition streaming engineered for smooth, uninterrupted viewing.">
+                            <div class="service-icon-wrapper">
+                                <span class="service-icon">📺</span>
+                            </div>
+                            <span class="service-title">HD Live Streaming</span>
+                            <div class="service-divider"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 - Bottom Right -->
+                    <div class="honeycomb-card honeycomb-card-4">
+                        <div class="service-item" 
+                             data-animate="scale-up" 
+                             data-animate-delay="500"
+                             data-description="Built with secure APIs and robust backend architecture to protect data and ensure reliability.">
+                            <div class="service-icon-wrapper">
+                                <span class="service-icon">🔐</span>
+                            </div>
+                            <span class="service-title">Secure API Integration</span>
+                            <div class="service-divider"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+<!-- ============================================
+     SECTION: CONTACT (COMPACT WITH ANIMATIONS)
+     ============================================ -->
+<section id="contact" class="viewport-section contact-section" data-section-state="entering">
+    
+    <!-- Section Header -->
+    <header class="section-header" data-animate="fade-up">
+        <span class="section-label">05 // INITIATE LINK</span>
+        <h2><i class="fas fa-headset"></i> Contact Us</h2>
+        <p>Have a question or want to work together? Get in touch with our team.</p>
+    </header>
+
+    <!-- Main Contact Container -->
+    <div class="contact-container" data-animate="fade-up" data-animate-delay="100">
+        
+        <!-- Left Column - Company Information -->
+        <aside class="contact-info" data-animate="fade-right" data-animate-delay="150">
+            
+            <!-- Address -->
+            <div class="info-block" data-animate="fade-up" data-animate-delay="200">
+                <h3><i class="fas fa-building"></i> Our Office</h3>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <address>
+                        7E Cyber One Building, 11 Eastwood Ave,<br>
+                        Quezon City, 1110, Philippines   
+                    </address>
+                </div>
+            </div>
+
+            <!-- Contact Info Row -->
+            <div class="info-row" data-animate="fade-up" data-animate-delay="250">
+                <!-- Phone -->
+                <div class="info-block info-block-half">
+                    <h3><i class="fas fa-phone-alt"></i> Call Us</h3>
+                    <div class="info-item compact">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="info-block info-block-half">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <div class="info-item compact">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@fupixsolutions.com">info@fupixsolutions.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="info-block" data-animate="fade-up" data-animate-delay="300">
+                <h3><i class="fas fa-clock"></i> Business Hours</h3>
+                <ul class="hours-list compact">
+                    <li>
+                        <span class="day">Mon - Fri</span>
+                        <span class="time">9:00 AM - 6:00 PM</span>
+                    </li>
+                    <li>
+                        <span class="day">Sat - Sun</span>
+                        <span class="time closed">Closed</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="info-block" data-animate="fade-up" data-animate-delay="350">
+                <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
+                <nav class="social-links" aria-label="Social media links">
+                    <a href="https://linkedin.com/company/fupixsolutions" 
+                       class="social-link linkedin" 
+                       aria-label="LinkedIn" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://facebook.com/fupixsolutions" 
+                       class="social-link facebook" 
+                       aria-label="Facebook" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/fupixsolutions" 
+                       class="social-link twitter" 
+                       aria-label="Twitter" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://discord.gg/fupixsolutions" 
+                       class="social-link discord" 
+                       aria-label="Discord" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Google Map (Smaller) -->
+            <div class="map-container" data-animate="fade-up" data-animate-delay="400">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.1925698068753!2d121.07775487465786!3d14.607704476903603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b81d416aaaab%3A0xf976e892effbfbdd!2sCyber%20One%20Building!5e1!3m2!1sen!2sph!4v1768890764038!5m2!1sen!2sph" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Office Location Map">
+                </iframe>
+            </div>
+
+        </aside>
+
+        <!-- Right Column - Contact Form -->
+        <div class="contact-form-wrapper" data-animate="fade-left" data-animate-delay="200">
+            
+            <div class="form-content">
+                
+                <header class="form-header" data-animate="fade-up" data-animate-delay="250">
+                    <h2>Send Us a Message</h2>
+                    <p>We'll get back to you within 24 hours.</p>
+                </header>
+
+                <form class="contact-form" id="contactForm" action="#" method="POST" novalidate>
+                    
+                    <!-- Name & Email Row -->
+                    <div class="form-row" data-animate="fade-up" data-animate-delay="300">
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <div class="input-icon">
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    placeholder="John Doe" 
+                                    required
+                                    autocomplete="name"
+                                >
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <div class="input-icon">
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="john@example.com" 
+                                    required
+                                    autocomplete="email"
+                                >
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                    </div>
+
+                    <!-- Subject & Phone Row -->
+                    <div class="form-row" data-animate="fade-up" data-animate-delay="350">
+                        <div class="form-group">
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="sales">Sales & Pricing</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="error-message" id="subjectError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone <span class="optional">(Optional)</span></label>
+                            <div class="input-icon">
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    placeholder="+1 (555) 000-0000"
+                                    autocomplete="tel"
+                                >
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="form-group" data-animate="fade-up" data-animate-delay="400">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            placeholder="Tell us about your project..."
+                            required
+                            minlength="10"
+                            maxlength="1000"
+                        ></textarea>
+                        <span class="error-message" id="messageError"></span>
+                        <span class="char-count" id="charCount">0 / 1000</span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions" data-animate="fade-up" data-animate-delay="450">
+                        <button type="submit" class="submit-btn btn btn-glow" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loader">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Sending...
+                            </span>
+                            <i class="fas fa-paper-plane btn-icon"></i>
+                        </button>
+
+                        <p class="form-note">
+                            <i class="fas fa-shield-alt"></i>
+                            Your information is secure.
+                        </p>
+                    </div>
+
+                </form>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage" hidden>
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank You!</h3>
+                    <p>Your message has been sent. We'll respond within 24 hours!</p>
+                    <button type="button" class="btn btn-secondary" id="sendAnotherBtn">
+                        Send Another Message
+                    </button>
+                </div>
+
+                <!-- Error Message -->
+                <div class="error-alert" id="errorAlert" hidden>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Something went wrong. Please try again.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer" data-animate="fade-up" data-animate-delay="500">
+        <div class="footer-links">
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Discord</a>
+        </div>
+        <p class="copyright text-muted">&copy; 2024 FUPIX Solutions. All Rights Reserved.</p>
+    </footer>
+
+</section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="section/home/script.js"></script>
+    <script src="section/detail/script.js"></script>
+    <script src="section/featured/script.js"></script>
+    
+    <!-- Three.js MUST load before gridbox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="section/gridbox/script.js"></script>
+    
+    <script src="section/services/script.js"></script>
+    
+    <!-- Contact Form Script -->
+    <script src="section/contact/script.js"></script>
+    
+    <!-- Scroll Animations - Load LAST -->
+    <script src="js/scroll-animations.js"></script>
+</body>
+</html>

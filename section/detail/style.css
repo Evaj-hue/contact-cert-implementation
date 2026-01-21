@@ -1,0 +1,101 @@
+/* =========================
+   SECTION 2: DETAIL - CONTAINER
+   ========================= */
+#detail {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg); /* Black in dark mode */
+}
+
+/* Light Mode Background */
+html[data-theme="light"] #detail,
+[data-theme="light"] #detail {
+    background: #f0f4f4; /* Very light grey/teal tint */
+}
+
+/* =========================
+   PLEXUS CANVAS
+   ========================= */
+#plexusCanvas {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+
+/* =========================
+   CONTENT WRAPPER
+   ========================= */
+.detail-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* =========================
+   TYPOGRAPHY DESIGN
+   ========================= */
+.detail-title {
+    font-family: 'Orbitron', sans-serif; /* Tech font */
+    font-weight: 900; /* Extra Bold */
+    font-size: clamp(3rem, 5vw, 5.5rem); /* Massive responsive size */
+    line-height: 0.9; /* Tight spacing between lines */
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: -1px; /* Tighter letter spacing for that blocky look */
+    
+    /* Subtle drop shadow to separate from plexus */
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* The Dash "—" Style */
+.accent-dash {
+    color: var(--white);
+    font-weight: 300;
+}
+
+/* Description Text */
+.detail-description {
+    font-family: 'Rajdhani', sans-serif; /* Clean tech sans */
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 500;
+    font-style: italic; /* Matches the image style */
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 650px;
+    margin: 0 auto;
+    
+    /* Make it readable over the network */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* =========================
+   LIGHT MODE TYPOGRAPHY
+   ========================= */
+html[data-theme="light"] .detail-title {
+    color: #1a1a1a; /* Dark Grey/Black */
+    text-shadow: 0 10px 30px rgba(255,255,255,0.8);
+}
+
+html[data-theme="light"] .accent-dash {
+    color: var(--accent); /* Teal dash in light mode */
+}
+
+html[data-theme="light"] .detail-description {
+    color: #444;
+    text-shadow: none;
+    font-weight: 600;
+}
+
+/* =========================
+   RESPONSIVE ADJUSTMENTS
+   ========================= */
+@media (max-width: 768px) {
+    .detail-title { font-size: 2.5rem; line-height: 1.1; }
+    .detail-description { font-size: 0.95rem; }
+}

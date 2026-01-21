@@ -1,0 +1,11 @@
+#featured {
+    /* Shares the same background color as detail, but defined here for modularity */
+    background-color: var(--deep);
+}
+.showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.placeholder-art {
+    width: 100%; height: 300px; background: rgba(0,0,0,0.3);
+    border: 1px solid var(--accent); display: flex; align-items: center;
+    justify-content: center; font-family: 'Orbitron'; color: var(--muted);
+}
+@media (max-width: 768px) { .showcase-grid { grid-template-columns: 1fr; } }

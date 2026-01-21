@@ -1,0 +1,131 @@
+/* ============================================
+   GRIDBOX 3D BACKGROUND SYSTEM
+   Version: 8.0 - Clean
+   ============================================ */
+
+/* 3D Canvas */
+.gridbox-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.gridbox-canvas.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Gridbox Sections */
+.gridbox-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Content Wrapper */
+.gridbox-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 60px 20px;
+    box-sizing: border-box;
+}
+
+/* Card Constraints */
+.gridbox-section .about-card {
+    width: 100%;
+    max-width: 500px;
+    max-height: calc(100vh - 120px);
+    overflow: hidden;
+}
+
+.gridbox-section .mv-card {
+    width: 100%;
+    max-width: 600px;
+    max-height: calc(100vh - 120px);
+    overflow: hidden;
+}
+
+.gridbox-section .about-card:hover,
+.gridbox-section .mv-card:hover {
+    overflow-y: auto;
+}
+
+/* Scrollbars */
+.gridbox-section .about-card::-webkit-scrollbar,
+.gridbox-section .mv-card::-webkit-scrollbar {
+    width: 4px;
+}
+
+.gridbox-section .about-card::-webkit-scrollbar-track,
+.gridbox-section .mv-card::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.gridbox-section .about-card::-webkit-scrollbar-thumb {
+    background: var(--neon, #00f8f8);
+    border-radius: 4px;
+}
+
+.gridbox-section .mv-card::-webkit-scrollbar-thumb {
+    background: var(--neon, #00f8f8);
+    border-radius: 4px;
+}
+
+.gridbox-section .vision-card::-webkit-scrollbar-thumb {
+    background: var(--gold, #d4af37);
+}
+
+/* Services Section */
+#services.gridbox-section {
+    padding: 40px 20px;
+}
+
+#services.gridbox-section .services-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 900px) {
+    .gridbox-content-wrapper {
+        padding: 40px 15px;
+    }
+    .gridbox-section .about-card {
+        max-width: 90%;
+        max-height: calc(100vh - 100px);
+    }
+    .gridbox-section .mv-card {
+        max-width: 90%;
+        max-height: calc(100vh - 100px);
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 600px) {
+    .gridbox-content-wrapper {
+        padding: 30px 15px;
+    }
+    .gridbox-section .about-card,
+    .gridbox-section .mv-card {
+        max-width: 100%;
+        max-height: calc(100vh - 80px);
+    }
+}

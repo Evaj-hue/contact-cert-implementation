@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Grid Room Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+        }
+
+        /* The 3D Canvas Container */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #00f8f8;
+        }
+
+        .theme-btn {
+            padding: 12px 24px;
+            background: #007c7c;
+            border: 1px solid #00baba;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            background: #00baba;
+            box-shadow: 0 0 20px rgba(0, 248, 248, 0.4);
+        }
+
+        /* Content Overlay */
+        .content {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-glow {
+            padding: 12px 24px;
+            background: #007c7c;
+            border: 1px solid #00baba;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            background: #00baba;
+            box-shadow: 0 0 20px rgba(0, 248, 248, 0.4);
+        }
+
+        .btn-ghost {
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(0, 248, 248, 0.1);
+            border-color: #00f8f8;
+            color: #00f8f8;
+        }
+
+        /* Status */
+        #status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 1000;
+        }
+
+        /* Light Theme */
+        [data-theme="light"] body {
+            background: #EEEEEE;
+            color: #0a0a0a;
+        }
+
+        [data-theme="light"] p {
+            color: #444;
+        }
+
+        [data-theme="light"] .logo {
+            color: #007c7c;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3D Canvas will be inserted here by JavaScript -->
+    <div id="bg-canvas"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">GRID SYSTEM</div>
+        <button class="theme-btn" id="themeBtn">Light Mode</button>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>INFINITE<br>HORIZON</h1>
+        <p>Seamless 3D Grid Animation</p>
+        <div class="buttons">
+            <button class="btn-glow">Get Started</button>
+            <button class="btn-ghost">Learn More</button>
+        </div>
+    </div>
+
+    <!-- Status -->
+    <div id="status">Loading...</div>
+
+    <!-- Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+    <script>
+        // ============================================
+        // 3D GRID ROOM - EXACT REPLICA OF YOUR WORKING VERSION
+        // ============================================
+
+        const statusEl = document.getElementById('status');
+
+        // 1. Theme Configuration
+        const themes = {
+            dark: {
+                background: 0x000000,
+                gridColor: 0x666666,
+                fogDensity: 0.04
+            },
+            light: {
+                background: 0xEEEEEE,
+                gridColor: 0xAAAAAA,
+                fogDensity: 0.04
+            }
+        };
+
+        // Check Three.js
+        if (typeof THREE === 'undefined') {
+            statusEl.textContent = '❌ THREE.js not loaded!';
+            statusEl.style.color = 'red';
+            throw new Error('THREE.js not loaded');
+        }
+
+        statusEl.textContent = '✓ THREE.js loaded';
+
+        // 2. Setup Scene
+        const container = document.getElementById('bg-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        statusEl.textContent = '✓ Renderer created';
+
+        // Set initial Fog (Dark Mode default)
+        scene.fog = new THREE.FogExp2(themes.dark.background, themes.dark.fogDensity);
+
+        camera.position.z = 3;
+        camera.position.y = 0;
+
+        // 3. Create Grid System
+        const grids = [];
+
+        function createGrid(y, zRot = 0, x = 0) {
+            const size = 60;
+            const divisions = 60;
+            const helper = new THREE.GridHelper(size, divisions, themes.dark.gridColor, themes.dark.gridColor);
+            
+            helper.position.y = y;
+            helper.position.x = x;
+            helper.rotation.z = zRot;
+            
+            scene.add(helper);
+            grids.push(helper);
+        }
+
+        // Build the room
+        createGrid(-1.5);                    // Floor
+        createGrid(1.5);                     // Ceiling
+        createGrid(0, Math.PI / 2, -1.5);   // Left Wall
+        createGrid(0, Math.PI / 2, 1.5);    // Right Wall
+
+        statusEl.textContent = '✓ Grids created: ' + grids.length;
+
+        // 4. Animation Loop
+        const speed = 0.005;
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            grids.forEach(grid => {
+                grid.position.z += speed;
+                // Infinite Loop Reset
+                if (grid.position.z >= 1) {
+                    grid.position.z = 0;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+        statusEl.textContent = '✓ Animation running';
+
+        // 5. Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 6. Theme Toggle Logic
+        const themeBtn = document.getElementById('themeBtn');
+        const htmlElement = document.documentElement;
+
+        themeBtn.addEventListener('click', () => {
+            const isLightMode = htmlElement.getAttribute('data-theme') === 'light';
+
+            if (isLightMode) {
+                // SWITCH TO DARK
+                htmlElement.removeAttribute('data-theme');
+                themeBtn.innerText = "Light Mode";
+                update3D(themes.dark);
+            } else {
+                // SWITCH TO LIGHT
+                htmlElement.setAttribute('data-theme', 'light');
+                themeBtn.innerText = "Dark Mode";
+                update3D(themes.light);
+            }
+        });
+
+        function update3D(theme) {
+            // Update Fog to match the new background color
+            scene.fog.color.setHex(theme.background);
+            
+            // Update Grid Lines
+            grids.forEach(grid => {
+                grid.material.color.setHex(theme.gridColor);
+            });
+
+            // Update renderer background
+            renderer.setClearColor(theme.background, 1);
+        }
+
+        // Set initial background
+        renderer.setClearColor(themes.dark.background, 1);
+
+        statusEl.textContent = '✓ 3D Grid Room Active!';
+        statusEl.style.color = '#00ff00';
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* VARIABLES */
+:root{
+    --bg:#000000;
+    --deep:#003e3e;
+    --mid:#007c7c;
+    --accent:#00baba;
+    --neon:#00f8f8;
+    --white:#ffffff;
+    --gold:#d4af37;
+    --muted:rgba(255,255,255,0.65);
+    --glass: rgba(255,255,255,0.04);
+    --max-width:1200px;
+    --nav-height: 80px;
+
+    /* Effects */
+    --btn-glow: rgba(0, 248, 248, 0.4);
+    --btn-glow-strong: rgba(0, 248, 248, 0.6);
+    --btn-shadow: rgba(0, 248, 248, 0.09);
+    --ghost-hover-bg: rgba(0, 248, 248, 0.08);
+}
+
+/* THEME OVERRIDES */
+[data-theme="light"]{
+    --bg: #EEEEEE;
+    --deep: #ffffff; 
+    --mid: #e9f7f6;
+    --accent: #007c7c; 
+    --neon: #171818; 
+    --white: #0a0a0a; 
+    --gold: #d4af37;
+    --muted: #444444;
+    --glass: rgba(10,10,10,0.05);
+    --btn-glow: rgba(0, 124, 124, 0.35);
+    --btn-glow-strong: rgba(0, 124, 124, 0.5);
+    --btn-shadow: rgba(0, 124, 124, 0.15);
+    --ghost-hover-bg: rgba(0, 124, 124, 0.1);
+}
+
+/* RESET */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background-color: var(--bg); color: var(--white); font-family: 'Rajdhani', sans-serif; font-size: 18px; line-height: 1.6; overflow-y: hidden; }
+h1, h2, h3 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+/* UTILITIES */
+.text-accent { color: var(--accent); }
+.text-neon { color: var(--neon); }
+.text-gold { color: var(--gold); }
+.text-muted { color: var(--muted); }
+.content-wrapper { width: 100%; max-width: var(--max-width); padding: 0 20px; }
+.content-wrapper.centered { text-align: center; }
+.section-label { display: block; font-family: 'Orbitron'; margin-bottom: 15px; font-size: 0.85rem; letter-spacing: 2px; }
+.lead-text { font-size: 1.5rem; max-width: 800px; margin-bottom: 40px; color: var(--muted); }
+
+/* SCROLL SNAP ENGINE */
+.scroll-container { height: 100vh; width: 100vw; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+.viewport-section { height: 100vh; width: 100%; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; padding-top: var(--nav-height); transition: background-color 0.4s ease; }
+
+/* NAVIGATION */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    height: var(--nav-height);
+    background: var(--nav-bg); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--glass);
+    
+    /* ADD THIS LINE: This makes the hide/show animation smooth */
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease;
+}
+
+/* ADD THIS NEW CLASS */
+.nav-hidden {
+    /* Moves the navbar up by 100% of its height */
+    transform: translateY(-100%);
+}
+.nav-container { max-width: var(--max-width); margin: 0 auto; height: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.logo { font-family: 'Orbitron'; font-weight: 900; font-size: 1.5rem; }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; color: var(--muted); }
+.nav-links a:hover { color: var(--neon); text-shadow: 0 0 10px var(--btn-glow); }
+/* Mobile Hide */
+@media (max-width: 768px) { .nav-links { display: none; } }
+
+/* BUTTONS */
+.btn { padding: 15px 40px; font-family: 'Orbitron'; font-weight: bold; background: transparent; color: var(--neon); border: 1px solid var(--neon); cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+.btn:hover { background: var(--ghost-hover-bg); box-shadow: 0 0 20px var(--btn-glow); }
+.btn-icon { background: transparent; border: 1px solid var(--muted); color: var(--white); padding: 8px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; transition: 0.3s; }
+.btn-icon:hover { border-color: var(--neon); color: var(--neon); box-shadow: 0 0 10px var(--btn-glow); }
+.btn-icon svg { width: 20px; height: 20px; }
+
+/* THEME ICON LOGIC */
+[data-theme="light"] .icon-sun { display: none; }
+[data-theme="light"] .icon-moon { display: block; }
+:root:not([data-theme="light"]) .icon-moon { display: none; }

@@ -1,0 +1,265 @@
+    /* ============================================
+    SCROLL ANIMATIONS - 3D GRID SYNCHRONIZED
+    Version: 2.0
+    ============================================ */
+
+    /* ============================================
+    BASE STATES
+    ============================================ */
+    [data-animate] {
+        opacity: 0;
+        will-change: transform, opacity;
+    }
+
+    /* ============================================
+    GRIDBOX SECTION - 3D ZOOM SYNC
+    ============================================ */
+
+    /* Section wrapper for 3D effect */
+    .gridbox-section .gridbox-content-wrapper {
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Initial state - Zoomed out (entering from below) */
+    .gridbox-section[data-section-state="entering"] .gridbox-content-wrapper {
+        transform: scale(0.75) translateZ(-100px);
+        opacity: 0;
+    }
+
+    /* Active state - Normal (in view) */
+    .gridbox-section[data-section-state="active"] .gridbox-content-wrapper {
+        transform: scale(1) translateZ(0);
+        opacity: 1;
+    }
+
+    /* Exit state - Zoomed in (leaving above) */
+    .gridbox-section[data-section-state="exiting"] .gridbox-content-wrapper {
+        transform: scale(1.15) translateZ(50px);
+        opacity: 0;
+    }
+
+    /* ============================================
+    CONTENT ANIMATIONS - ZOOM IN
+    ============================================ */
+
+    /* Zoom In from Back (3D depth effect) */
+    [data-animate="zoom-in"] {
+        transform: scale(0.7) translateZ(-80px);
+        opacity: 0;
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-animate="zoom-in"].is-visible {
+        transform: scale(1) translateZ(0);
+        opacity: 1;
+    }
+
+    /* Zoom In with Fade Up (combined effect) */
+    [data-animate="zoom-fade-up"] {
+        transform: scale(0.8) translateY(60px) translateZ(-50px);
+        opacity: 0;
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-animate="zoom-fade-up"].is-visible {
+        transform: scale(1) translateY(0) translateZ(0);
+        opacity: 1;
+    }
+
+    /* Scale Up (for service cards) */
+    [data-animate="scale-up"] {
+        transform: scale(0.6) translateZ(-60px);
+        opacity: 0;
+        transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-animate="scale-up"].is-visible {
+        transform: scale(1) translateZ(0);
+        opacity: 1;
+    }
+
+    /* Fade Up (standard) */
+    [data-animate="fade-up"] {
+        transform: translateY(40px);
+        opacity: 0;
+        transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-animate="fade-up"].is-visible {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* ============================================
+    3D PERSPECTIVE CONTAINER
+    ============================================ */
+
+    /* Add perspective to gridbox sections */
+    .gridbox-section {
+        perspective: 1000px;
+        perspective-origin: center center;
+    }
+
+    .gridbox-content-wrapper {
+        transform-style: preserve-3d;
+    }
+
+    /* Cards get their own 3D space */
+    .about-card,
+    .mv-card,
+    .service-item {
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+    }
+
+    /* ============================================
+    SERVICES SECTION - HONEYCOMB 3D
+    ============================================ */
+
+    /* Services container perspective */
+    .services-container {
+        perspective: 1200px;
+        perspective-origin: center center;
+    }
+
+    .honeycomb-layout {
+        transform-style: preserve-3d;
+    }
+
+    /* Honeycomb center title */
+    .honeycomb-center[data-animate="zoom-in"] {
+        transform: scale(0.6) translateZ(-100px);
+    }
+
+    .honeycomb-center[data-animate="zoom-in"].is-visible {
+        transform: scale(1) translateZ(0);
+    }
+
+    /* Service cards staggered 3D entrance */
+    .service-item[data-animate="scale-up"] {
+        transform: scale(0.5) translateZ(-80px) rotateX(15deg);
+    }
+
+    .service-item[data-animate="scale-up"].is-visible {
+        transform: scale(1) translateZ(0) rotateX(0deg);
+    }
+
+    /* ============================================
+    ANIMATION DELAYS - STAGGERING
+    ============================================ */
+    [data-animate-delay="50"] { transition-delay: 50ms; }
+    [data-animate-delay="100"] { transition-delay: 100ms; }
+    [data-animate-delay="150"] { transition-delay: 150ms; }
+    [data-animate-delay="200"] { transition-delay: 200ms; }
+    [data-animate-delay="250"] { transition-delay: 250ms; }
+    [data-animate-delay="300"] { transition-delay: 300ms; }
+    [data-animate-delay="350"] { transition-delay: 350ms; }
+    [data-animate-delay="400"] { transition-delay: 400ms; }
+    [data-animate-delay="450"] { transition-delay: 450ms; }
+    [data-animate-delay="500"] { transition-delay: 500ms; }
+    [data-animate-delay="600"] { transition-delay: 600ms; }
+    [data-animate-delay="700"] { transition-delay: 700ms; }
+    [data-animate-delay="800"] { transition-delay: 800ms; }
+
+    /* ============================================
+    CONNECTORS - FADE IN SEQUENCE
+    ============================================ */
+    .honeycomb-connectors {
+        opacity: 0;
+        transition: opacity 0.8s ease 0.4s;
+    }
+
+    .gridbox-section[data-section-state="active"] .honeycomb-connectors,
+    .honeycomb-layout.connectors-visible .honeycomb-connectors {
+        opacity: 1;
+    }
+
+    /* Individual connector animations */
+    .connector {
+        opacity: 0;
+        transform: scale(0.5);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .honeycomb-layout.connectors-visible .connector {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .honeycomb-layout.connectors-visible .connector-top-left { transition-delay: 0.5s; }
+    .honeycomb-layout.connectors-visible .connector-top-right { transition-delay: 0.55s; }
+    .honeycomb-layout.connectors-visible .connector-center-left { transition-delay: 0.6s; }
+    .honeycomb-layout.connectors-visible .connector-center-right { transition-delay: 0.65s; }
+    .honeycomb-layout.connectors-visible .connector-left-vertical { transition-delay: 0.7s; }
+    .honeycomb-layout.connectors-visible .connector-right-vertical { transition-delay: 0.75s; }
+    .honeycomb-layout.connectors-visible .connector-bottom-horizontal { transition-delay: 0.8s; }
+
+    /* ============================================
+    SCROLL PROGRESS PARALLAX
+    ============================================ */
+
+    /* Cards subtle float on scroll */
+    .about-card,
+    .mv-card {
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                    box-shadow 0.4s ease,
+                    border-color 0.4s ease;
+    }
+
+    /* ============================================
+    MOBILE ADJUSTMENTS
+    ============================================ */
+    @media (max-width: 699px) {
+        [data-animate="zoom-in"],
+        [data-animate="zoom-fade-up"] {
+            transform: scale(0.85) translateY(30px);
+        }
+        
+        [data-animate="scale-up"] {
+            transform: scale(0.8) translateY(20px);
+        }
+        
+        .service-item[data-animate="scale-up"] {
+            transform: scale(0.8) translateY(20px);
+        }
+        
+        .service-item[data-animate="scale-up"].is-visible {
+            transform: scale(1) translateY(0);
+        }
+        
+        .gridbox-section[data-section-state="entering"] .gridbox-content-wrapper {
+            transform: scale(0.85) translateY(30px);
+        }
+        
+        .gridbox-section[data-section-state="exiting"] .gridbox-content-wrapper {
+            transform: scale(1.05) translateY(-20px);
+        }
+    }
+
+    /* ============================================
+    REDUCED MOTION - ACCESSIBILITY
+    ============================================ */
+    @media (prefers-reduced-motion: reduce) {
+        [data-animate],
+        .gridbox-content-wrapper,
+        .connector,
+        .honeycomb-connectors,
+        .about-card,
+        .mv-card,
+        .service-item {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+        
+        .gridbox-section[data-section-state] .gridbox-content-wrapper {
+            transform: none !important;
+            opacity: 1 !important;
+        }
+    }
