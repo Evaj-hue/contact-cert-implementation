@@ -1,7 +1,7 @@
 /* ============================================
    CERTIFICATE MODAL SYSTEM
    For FUPIX Solutions One-Page Website
-   Version: 1.0 Complete
+   Version: 1.1 - With Lightbox (No Redirect)
    ============================================ */
 
 // ============================================
@@ -79,8 +79,221 @@ let detailDate = null;
 let detailCredentialId = null;
 let detailDescription = null;
 
+// Lightbox element
+let lightbox = null;
+
 // Current certificate index for navigation
 let currentIndex = 0;
+
+// ============================================
+// CREATE LIGHTBOX ELEMENT
+// ============================================
+function createLightbox() {
+    // Check if lightbox already exists
+    if (document.getElementById('certLightbox')) {
+        lightbox = document.getElementById('certLightbox');
+        return;
+    }
+
+    // Create lightbox HTML
+    const lightboxHTML = `
+        <div class="cert-lightbox" id="certLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Full size certificate image">
+            <div class="cert-lightbox-backdrop"></div>
+            <div class="cert-lightbox-content">
+                <button class="cert-lightbox-close" id="certLightboxClose" aria-label="Close full size image">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="cert-lightbox-nav cert-lightbox-prev" id="certLightboxPrev" aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="cert-lightbox-image-wrapper">
+                    <img src="" alt="Certificate full size" class="cert-lightbox-image" id="certLightboxImage">
+                    <div class="cert-lightbox-loader">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+                <button class="cert-lightbox-nav cert-lightbox-next" id="certLightboxNext" aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="cert-lightbox-caption" id="certLightboxCaption"></div>
+                <div class="cert-lightbox-counter" id="certLightboxCounter"></div>
+            </div>
+            <div class="cert-lightbox-hint">
+                <span>Press <kbd>ESC</kbd> to close • Use <kbd>←</kbd> <kbd>→</kbd> to navigate</span>
+            </div>
+        </div>
+    `;
+
+    // Add to body
+    document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+
+    // Get reference
+    lightbox = document.getElementById('certLightbox');
+
+    // Add lightbox event listeners
+    initLightboxEvents();
+}
+
+// ============================================
+// INITIALIZE LIGHTBOX EVENTS
+// ============================================
+function initLightboxEvents() {
+    const lightboxClose = document.getElementById('certLightboxClose');
+    const lightboxPrev = document.getElementById('certLightboxPrev');
+    const lightboxNext = document.getElementById('certLightboxNext');
+    const lightboxBackdrop = lightbox.querySelector('.cert-lightbox-backdrop');
+    const lightboxImage = document.getElementById('certLightboxImage');
+
+    // Close button
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeLightbox();
+        });
+    }
+
+    // Click backdrop to close
+    if (lightboxBackdrop) {
+        lightboxBackdrop.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeLightbox();
+        });
+    }
+
+    // Previous button
+    if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            lightboxPrevious();
+        });
+    }
+
+    // Next button
+    if (lightboxNext) {
+        lightboxNext.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            lightboxNext_();
+        });
+    }
+
+    // Click image to close (optional - can be changed to zoom)
+    if (lightboxImage) {
+        lightboxImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Optional: Close on image click
+            // closeLightbox();
+        });
+    }
+}
+
+// ============================================
+// OPEN LIGHTBOX
+// ============================================
+function openLightbox(index) {
+    if (!lightbox) {
+        createLightbox();
+    }
+
+    if (index === undefined) {
+        index = currentIndex;
+    }
+
+    const cert = certificates[index];
+    if (!cert) return;
+
+    const lightboxImage = document.getElementById('certLightboxImage');
+    const lightboxCaption = document.getElementById('certLightboxCaption');
+    const lightboxCounter = document.getElementById('certLightboxCounter');
+    const lightboxPrev = document.getElementById('certLightboxPrev');
+    const lightboxNext = document.getElementById('certLightboxNext');
+
+    // Show loading state
+    lightbox.classList.add('loading');
+
+    // Update image
+    if (lightboxImage) {
+        lightboxImage.onload = function() {
+            lightbox.classList.remove('loading');
+        };
+        lightboxImage.onerror = function() {
+            lightbox.classList.remove('loading');
+            lightboxImage.alt = 'Failed to load image';
+        };
+        lightboxImage.src = cert.image;
+        lightboxImage.alt = cert.title;
+    }
+
+    // Update caption
+    if (lightboxCaption) {
+        lightboxCaption.textContent = cert.title;
+    }
+
+    // Update counter
+    if (lightboxCounter) {
+        lightboxCounter.textContent = `${index + 1} / ${certificates.length}`;
+    }
+
+    // Update navigation buttons
+    if (lightboxPrev) {
+        lightboxPrev.disabled = index === 0;
+        lightboxPrev.style.visibility = index === 0 ? 'hidden' : 'visible';
+    }
+    if (lightboxNext) {
+        lightboxNext.disabled = index === certificates.length - 1;
+        lightboxNext.style.visibility = index === certificates.length - 1 ? 'hidden' : 'visible';
+    }
+
+    // Show lightbox
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden', 'false');
+
+    // Store current index for navigation
+    lightbox.dataset.currentIndex = index;
+
+    console.log('Lightbox opened:', cert.title);
+}
+
+// ============================================
+// CLOSE LIGHTBOX
+// ============================================
+function closeLightbox() {
+    if (!lightbox) return;
+
+    lightbox.classList.remove('active');
+    lightbox.classList.remove('loading');
+    lightbox.setAttribute('aria-hidden', 'true');
+
+    // Return focus to detail image
+    if (detailImage) {
+        detailImage.focus();
+    }
+
+    console.log('Lightbox closed');
+}
+
+// ============================================
+// LIGHTBOX NAVIGATION
+// ============================================
+function lightboxPrevious() {
+    if (!lightbox) return;
+
+    let index = parseInt(lightbox.dataset.currentIndex) || 0;
+    if (index > 0) {
+        openLightbox(index - 1);
+    }
+}
+
+function lightboxNext_() {
+    if (!lightbox) return;
+
+    let index = parseInt(lightbox.dataset.currentIndex) || 0;
+    if (index < certificates.length - 1) {
+        openLightbox(index + 1);
+    }
+}
 
 // ============================================
 // INITIALIZE DOM ELEMENTS
@@ -191,6 +404,12 @@ function openModal() {
 // ============================================
 function closeModal() {
     if (!modalOverlay) return;
+
+    // Close lightbox first if open
+    if (lightbox && lightbox.classList.contains('active')) {
+        closeLightbox();
+        return;
+    }
 
     // Hide modal
     modalOverlay.classList.remove('active');
@@ -376,10 +595,23 @@ function initEventListeners() {
     // Keyboard navigation
     document.addEventListener('keydown', handleKeyboard);
 
-    // Click on detail image to open full size
+    // Click on detail image to open LIGHTBOX (not redirect!)
     if (detailImage) {
-        detailImage.addEventListener('click', function() {
-            window.open(detailImage.src, '_blank');
+        detailImage.addEventListener('click', function(e) {
+            e.preventDefault();
+            openLightbox(currentIndex);
+        });
+        
+        // Make it keyboard accessible
+        detailImage.setAttribute('tabindex', '0');
+        detailImage.setAttribute('role', 'button');
+        detailImage.setAttribute('aria-label', 'Click to view full size image');
+        
+        detailImage.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(currentIndex);
+            }
         });
     }
 }
@@ -388,7 +620,26 @@ function initEventListeners() {
 // KEYBOARD HANDLING
 // ============================================
 function handleKeyboard(e) {
-    // Only handle if modal is open
+    // Handle lightbox keyboard first (higher priority)
+    if (lightbox && lightbox.classList.contains('active')) {
+        switch (e.key) {
+            case 'Escape':
+                e.preventDefault();
+                closeLightbox();
+                return;
+            case 'ArrowLeft':
+                e.preventDefault();
+                lightboxPrevious();
+                return;
+            case 'ArrowRight':
+                e.preventDefault();
+                lightboxNext_();
+                return;
+        }
+        return;
+    }
+
+    // Only handle modal keyboard if modal is open
     if (!modalOverlay || !modalOverlay.classList.contains('active')) {
         return;
     }
@@ -472,31 +723,56 @@ let touchEndX = 0;
 const swipeThreshold = 50;
 
 function initTouchSupport() {
-    if (!detailView) return;
+    // Detail view swipe
+    if (detailView) {
+        detailView.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
 
-    detailView.addEventListener('touchstart', function(e) {
+        detailView.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe(false);
+        }, { passive: true });
+    }
+
+    // Lightbox swipe (will be initialized when lightbox is created)
+}
+
+function initLightboxTouchSupport() {
+    if (!lightbox) return;
+
+    const imageWrapper = lightbox.querySelector('.cert-lightbox-image-wrapper');
+    if (!imageWrapper) return;
+
+    imageWrapper.addEventListener('touchstart', function(e) {
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    detailView.addEventListener('touchend', function(e) {
+    imageWrapper.addEventListener('touchend', function(e) {
         touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
+        handleSwipe(true);
     }, { passive: true });
 }
 
-function handleSwipe() {
+function handleSwipe(isLightbox) {
     const diff = touchStartX - touchEndX;
 
     if (Math.abs(diff) < swipeThreshold) {
         return; // Not a significant swipe
     }
 
-    if (diff > 0) {
-        // Swipe left - show next
-        showNext();
+    if (isLightbox) {
+        if (diff > 0) {
+            lightboxNext_();
+        } else {
+            lightboxPrevious();
+        }
     } else {
-        // Swipe right - show previous
-        showPrevious();
+        if (diff > 0) {
+            showNext();
+        } else {
+            showPrevious();
+        }
     }
 }
 
@@ -534,6 +810,12 @@ function initCertificateModal() {
         console.error('Certificate modal: galleryView not found');
         return;
     }
+
+    // Create lightbox
+    createLightbox();
+    
+    // Initialize lightbox touch support
+    initLightboxTouchSupport();
 
     // Initialize gallery
     initGallery();
@@ -575,5 +857,7 @@ window.CertificateModal = {
     close: closeModal,
     showDetail: showDetail,
     showGallery: showGallery,
+    openLightbox: openLightbox,
+    closeLightbox: closeLightbox,
     certificates: certificates
 };
