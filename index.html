@@ -10,12 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons (Added for contact section) -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/scroll-animations.css">
+    <link rel="stylesheet" href="css/certificates.css">
     <link rel="stylesheet" href="section/home/style.css">
     <link rel="stylesheet" href="section/detail/style.css">
     <link rel="stylesheet" href="section/featured/style.css">
@@ -23,8 +24,6 @@
     <link rel="stylesheet" href="section/about/style.css">
     <link rel="stylesheet" href="section/services/style.css">
     <link rel="stylesheet" href="section/contact/style.css">
-    
-    <!-- Contact Form Specific Styles (Add this or merge into contact/style.css) -->
     <link rel="stylesheet" href="section/contact/contact-form.css">
 </head>
 <body>
@@ -34,10 +33,11 @@
         <div class="nav-container">
             <a href="#home" class="logo">FUPIX<span class="text-accent"> SOLUTIONS</span></a>
             <div class="nav-links">
-                <a href="games">Games</a>
+                <a href="#home">Home</a>
                 <a href="#about">About</a>
+                <a href="#services">Services</a>
                 <a href="#contact">Contact</a>
-                <a href="certification">Certification</a>
+                <a href="#" id="openCertModalBtn">Certificates</a>
             </div>
             <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
                 <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
@@ -366,263 +366,349 @@
                 </div>
             </div>
         </section>
-<!-- ============================================
-     SECTION: CONTACT (COMPACT WITH ANIMATIONS)
-     ============================================ -->
-<section id="contact" class="viewport-section contact-section" data-section-state="entering">
-    
-    <!-- Section Header -->
-    <header class="section-header" data-animate="fade-up">
-        <span class="section-label">05 // INITIATE LINK</span>
-        <h2><i class="fas fa-headset"></i> Contact Us</h2>
-        <p>Have a question or want to work together? Get in touch with our team.</p>
-    </header>
 
-    <!-- Main Contact Container -->
-    <div class="contact-container" data-animate="fade-up" data-animate-delay="100">
-        
-        <!-- Left Column - Company Information -->
-        <aside class="contact-info" data-animate="fade-right" data-animate-delay="150">
+        <!-- ============================================
+             SECTION: CONTACT
+             ============================================ -->
+        <section id="contact" class="viewport-section contact-section" data-section-state="entering">
             
-            <!-- Address -->
-            <div class="info-block" data-animate="fade-up" data-animate-delay="200">
-                <h3><i class="fas fa-building"></i> Our Office</h3>
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <address>
-                        7E Cyber One Building, 11 Eastwood Ave,<br>
-                        Quezon City, 1110, Philippines   
-                    </address>
-                </div>
-            </div>
+            <!-- Section Header -->
+            <header class="section-header" data-animate="fade-up">
+                <span class="section-label">05 // INITIATE LINK</span>
+                <h2><i class="fas fa-headset"></i> Contact Us</h2>
+                <p>Have a question or want to work together? Get in touch with our team.</p>
+            </header>
 
-            <!-- Contact Info Row -->
-            <div class="info-row" data-animate="fade-up" data-animate-delay="250">
-                <!-- Phone -->
-                <div class="info-block info-block-half">
-                    <h3><i class="fas fa-phone-alt"></i> Call Us</h3>
-                    <div class="info-item compact">
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:+15551234567">+1 (555) 123-4567</a>
-                    </div>
-                </div>
-
-                <!-- Email -->
-                <div class="info-block info-block-half">
-                    <h3><i class="fas fa-envelope"></i> Email</h3>
-                    <div class="info-item compact">
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:info@fupixsolutions.com">info@fupixsolutions.com</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Business Hours -->
-            <div class="info-block" data-animate="fade-up" data-animate-delay="300">
-                <h3><i class="fas fa-clock"></i> Business Hours</h3>
-                <ul class="hours-list compact">
-                    <li>
-                        <span class="day">Mon - Fri</span>
-                        <span class="time">9:00 AM - 6:00 PM</span>
-                    </li>
-                    <li>
-                        <span class="day">Sat - Sun</span>
-                        <span class="time closed">Closed</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Social Media Links -->
-            <div class="info-block" data-animate="fade-up" data-animate-delay="350">
-                <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
-                <nav class="social-links" aria-label="Social media links">
-                    <a href="https://linkedin.com/company/fupixsolutions" 
-                       class="social-link linkedin" 
-                       aria-label="LinkedIn" 
-                       target="_blank" 
-                       rel="noopener noreferrer">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://facebook.com/fupixsolutions" 
-                       class="social-link facebook" 
-                       aria-label="Facebook" 
-                       target="_blank" 
-                       rel="noopener noreferrer">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://twitter.com/fupixsolutions" 
-                       class="social-link twitter" 
-                       aria-label="Twitter" 
-                       target="_blank" 
-                       rel="noopener noreferrer">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/fupixsolutions" 
-                       class="social-link discord" 
-                       aria-label="Discord" 
-                       target="_blank" 
-                       rel="noopener noreferrer">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </nav>
-            </div>
-
-            <!-- Google Map (Smaller) -->
-            <div class="map-container" data-animate="fade-up" data-animate-delay="400">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.1925698068753!2d121.07775487465786!3d14.607704476903603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b81d416aaaab%3A0xf976e892effbfbdd!2sCyber%20One%20Building!5e1!3m2!1sen!2sph!4v1768890764038!5m2!1sen!2sph" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Office Location Map">
-                </iframe>
-            </div>
-
-        </aside>
-
-        <!-- Right Column - Contact Form -->
-        <div class="contact-form-wrapper" data-animate="fade-left" data-animate-delay="200">
-            
-            <div class="form-content">
+            <!-- Main Contact Container -->
+            <div class="contact-container" data-animate="fade-up" data-animate-delay="100">
                 
-                <header class="form-header" data-animate="fade-up" data-animate-delay="250">
-                    <h2>Send Us a Message</h2>
-                    <p>We'll get back to you within 24 hours.</p>
-                </header>
-
-                <form class="contact-form" id="contactForm" action="#" method="POST" novalidate>
+                <!-- Left Column - Company Information -->
+                <aside class="contact-info" data-animate="fade-right" data-animate-delay="150">
                     
-                    <!-- Name & Email Row -->
-                    <div class="form-row" data-animate="fade-up" data-animate-delay="300">
-                        <div class="form-group">
-                            <label for="name">Full Name <span class="required">*</span></label>
-                            <div class="input-icon">
-                                <input 
-                                    type="text" 
-                                    id="name" 
-                                    name="name" 
-                                    placeholder="John Doe" 
-                                    required
-                                    autocomplete="name"
-                                >
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <span class="error-message" id="nameError"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <div class="input-icon">
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    name="email" 
-                                    placeholder="john@example.com" 
-                                    required
-                                    autocomplete="email"
-                                >
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <span class="error-message" id="emailError"></span>
+                    <!-- Address -->
+                    <div class="info-block" data-animate="fade-up" data-animate-delay="200">
+                        <h3><i class="fas fa-building"></i> Our Office</h3>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <address>
+                                7E Cyber One Building, 11 Eastwood Ave,<br>
+                                Quezon City, 1110, Philippines   
+                            </address>
                         </div>
                     </div>
 
-                    <!-- Subject & Phone Row -->
-                    <div class="form-row" data-animate="fade-up" data-animate-delay="350">
-                        <div class="form-group">
-                            <label for="subject">Subject <span class="required">*</span></label>
-                            <select id="subject" name="subject" required>
-                                <option value="" disabled selected>Select a subject</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="support">Technical Support</option>
-                                <option value="sales">Sales & Pricing</option>
-                                <option value="partnership">Partnership</option>
-                                <option value="other">Other</option>
-                            </select>
-                            <span class="error-message" id="subjectError"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone <span class="optional">(Optional)</span></label>
-                            <div class="input-icon">
-                                <input 
-                                    type="tel" 
-                                    id="phone" 
-                                    name="phone" 
-                                    placeholder="+1 (555) 000-0000"
-                                    autocomplete="tel"
-                                >
+                    <!-- Contact Info Row -->
+                    <div class="info-row" data-animate="fade-up" data-animate-delay="250">
+                        <!-- Phone -->
+                        <div class="info-block info-block-half">
+                            <h3><i class="fas fa-phone-alt"></i> Call Us</h3>
+                            <div class="info-item compact">
                                 <i class="fas fa-phone"></i>
+                                <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="info-block info-block-half">
+                            <h3><i class="fas fa-envelope"></i> Email</h3>
+                            <div class="info-item compact">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:info@fupixsolutions.com">info@fupixsolutions.com</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Message -->
-                    <div class="form-group" data-animate="fade-up" data-animate-delay="400">
-                        <label for="message">Message <span class="required">*</span></label>
-                        <textarea 
-                            id="message" 
-                            name="message" 
-                            placeholder="Tell us about your project..."
-                            required
-                            minlength="10"
-                            maxlength="1000"
-                        ></textarea>
-                        <span class="error-message" id="messageError"></span>
-                        <span class="char-count" id="charCount">0 / 1000</span>
+                    <!-- Business Hours -->
+                    <div class="info-block" data-animate="fade-up" data-animate-delay="300">
+                        <h3><i class="fas fa-clock"></i> Business Hours</h3>
+                        <ul class="hours-list compact">
+                            <li>
+                                <span class="day">Mon - Fri</span>
+                                <span class="time">9:00 AM - 6:00 PM</span>
+                            </li>
+                            <li>
+                                <span class="day">Sat - Sun</span>
+                                <span class="time closed">Closed</span>
+                            </li>
+                        </ul>
                     </div>
 
-                    <!-- Submit Button -->
-                    <div class="form-actions" data-animate="fade-up" data-animate-delay="450">
-                        <button type="submit" class="submit-btn btn btn-glow" id="submitBtn">
-                            <span class="btn-text">Send Message</span>
-                            <span class="btn-loader">
-                                <i class="fas fa-spinner fa-spin"></i>
-                                Sending...
-                            </span>
-                            <i class="fas fa-paper-plane btn-icon"></i>
-                        </button>
-
-                        <p class="form-note">
-                            <i class="fas fa-shield-alt"></i>
-                            Your information is secure.
-                        </p>
+                    <!-- Social Media Links -->
+                    <div class="info-block" data-animate="fade-up" data-animate-delay="350">
+                        <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
+                        <nav class="social-links" aria-label="Social media links">
+                            <a href="https://linkedin.com/company/fupixsolutions" 
+                               class="social-link linkedin" 
+                               aria-label="LinkedIn" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://facebook.com/fupixsolutions" 
+                               class="social-link facebook" 
+                               aria-label="Facebook" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/fupixsolutions" 
+                               class="social-link twitter" 
+                               aria-label="Twitter" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
+                            <a href="https://discord.gg/fupixsolutions" 
+                               class="social-link discord" 
+                               aria-label="Discord" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                        </nav>
                     </div>
 
-                </form>
+                    <!-- Google Map -->
+                    <div class="map-container" data-animate="fade-up" data-animate-delay="400">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.1925698068753!2d121.07775487465786!3d14.607704476903603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b81d416aaaab%3A0xf976e892effbfbdd!2sCyber%20One%20Building!5e1!3m2!1sen!2sph!4v1768890764038!5m2!1sen!2sph" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Office Location Map">
+                        </iframe>
+                    </div>
 
-                <!-- Success Message -->
-                <div class="success-message" id="successMessage" hidden>
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Thank You!</h3>
-                    <p>Your message has been sent. We'll respond within 24 hours!</p>
-                    <button type="button" class="btn btn-secondary" id="sendAnotherBtn">
-                        Send Another Message
-                    </button>
-                </div>
+                </aside>
 
-                <!-- Error Message -->
-                <div class="error-alert" id="errorAlert" hidden>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>Something went wrong. Please try again.</p>
+                <!-- Right Column - Contact Form -->
+                <div class="contact-form-wrapper" data-animate="fade-left" data-animate-delay="200">
+                    
+                    <div class="form-content">
+                        
+                        <header class="form-header" data-animate="fade-up" data-animate-delay="250">
+                            <h2>Send Us a Message</h2>
+                            <p>We'll get back to you within 24 hours.</p>
+                        </header>
+
+                        <form class="contact-form" id="contactForm" action="#" method="POST" novalidate>
+                            
+                            <!-- Name & Email Row -->
+                            <div class="form-row" data-animate="fade-up" data-animate-delay="300">
+                                <div class="form-group">
+                                    <label for="name">Full Name <span class="required">*</span></label>
+                                    <div class="input-icon">
+                                        <input 
+                                            type="text" 
+                                            id="name" 
+                                            name="name" 
+                                            placeholder="John Doe" 
+                                            required
+                                            autocomplete="name"
+                                        >
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <span class="error-message" id="nameError"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email <span class="required">*</span></label>
+                                    <div class="input-icon">
+                                        <input 
+                                            type="email" 
+                                            id="email" 
+                                            name="email" 
+                                            placeholder="john@example.com" 
+                                            required
+                                            autocomplete="email"
+                                        >
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <span class="error-message" id="emailError"></span>
+                                </div>
+                            </div>
+
+                            <!-- Subject & Phone Row -->
+                            <div class="form-row" data-animate="fade-up" data-animate-delay="350">
+                                <div class="form-group">
+                                    <label for="subject">Subject <span class="required">*</span></label>
+                                    <select id="subject" name="subject" required>
+                                        <option value="" disabled selected>Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="support">Technical Support</option>
+                                        <option value="sales">Sales & Pricing</option>
+                                        <option value="partnership">Partnership</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <span class="error-message" id="subjectError"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone <span class="optional">(Optional)</span></label>
+                                    <div class="input-icon">
+                                        <input 
+                                            type="tel" 
+                                            id="phone" 
+                                            name="phone" 
+                                            placeholder="+1 (555) 000-0000"
+                                            autocomplete="tel"
+                                        >
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="form-group" data-animate="fade-up" data-animate-delay="400">
+                                <label for="message">Message <span class="required">*</span></label>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    placeholder="Tell us about your project..."
+                                    required
+                                    minlength="10"
+                                    maxlength="1000"
+                                ></textarea>
+                                <span class="error-message" id="messageError"></span>
+                                <span class="char-count" id="charCount">0 / 1000</span>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="form-actions" data-animate="fade-up" data-animate-delay="450">
+                                <button type="submit" class="submit-btn btn btn-glow" id="submitBtn">
+                                    <span class="btn-text">Send Message</span>
+                                    <span class="btn-loader">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        Sending...
+                                    </span>
+                                    <i class="fas fa-paper-plane btn-icon"></i>
+                                </button>
+
+                                <p class="form-note">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Your information is secure.
+                                </p>
+                            </div>
+
+                        </form>
+
+                        <!-- Success Message -->
+                        <div class="success-message" id="successMessage" hidden>
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Thank You!</h3>
+                            <p>Your message has been sent. We'll respond within 24 hours!</p>
+                            <button type="button" class="btn btn-secondary" id="sendAnotherBtn">
+                                Send Another Message
+                            </button>
+                        </div>
+
+                        <!-- Error Message -->
+                        <div class="error-alert" id="errorAlert" hidden>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Something went wrong. Please try again.</p>
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
+            <!-- Footer -->
+            <footer class="main-footer" data-animate="fade-up" data-animate-delay="500">
+                <div class="footer-links">
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Discord</a>
+                </div>
+                <p class="copyright text-muted">&copy; 2024 FUPIX Solutions. All Rights Reserved.</p>
+            </footer>
 
-    </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="main-footer" data-animate="fade-up" data-animate-delay="500">
-        <div class="footer-links">
-            <a href="#">Twitter</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Discord</a>
-        </div>
-        <p class="copyright text-muted">&copy; 2024 FUPIX Solutions. All Rights Reserved.</p>
-    </footer>
-
-</section>
     </main>
+
+    <!-- ============================================
+         CERTIFICATE MODAL
+         ============================================ -->
+    <div class="cert-modal-overlay" id="certModalOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+        <div class="cert-modal" id="certModal">
+            <!-- Modal Header -->
+            <div class="cert-modal-header">
+                <h2 id="certModalTitle"><i class="fas fa-award"></i> FUPIX Certificates</h2>
+                <button class="cert-close-btn" id="closeCertModalBtn" aria-label="Close modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="cert-modal-body">
+                <!-- Gallery View (Thumbnails) -->
+                <div class="cert-gallery-view" id="certGalleryView">
+                    <!-- Certificate cards will be dynamically inserted here -->
+                </div>
+
+                <!-- Detail View -->
+                <div class="cert-detail-view" id="certDetailView">
+                    <button class="cert-back-btn" id="certBackBtn">
+                        <i class="fas fa-arrow-left"></i> Back to Gallery
+                    </button>
+
+                    <div class="cert-detail-container">
+                        <!-- Left: Large Image -->
+                        <div class="cert-detail-image-container">
+                            <img src="" alt="Certificate" class="cert-detail-image" id="certDetailImage">
+                            <p class="cert-image-zoom-hint">
+                                <i class="fas fa-search-plus"></i> Click image to view full size
+                            </p>
+                        </div>
+
+                        <!-- Right: Certificate Details -->
+                        <div class="cert-detail-info">
+                            <h3 id="certDetailTitle">Certificate Title</h3>
+
+                            <div class="cert-detail-meta">
+                                <div class="cert-detail-meta-item">
+                                    <div class="cert-meta-icon"><i class="fas fa-building"></i></div>
+                                    <div class="cert-meta-content">
+                                        <label>Issuing Organization</label>
+                                        <span id="certDetailOrganization">Organization Name</span>
+                                    </div>
+                                </div>
+
+                                <div class="cert-detail-meta-item">
+                                    <div class="cert-meta-icon"><i class="fas fa-calendar-alt"></i></div>
+                                    <div class="cert-meta-content">
+                                        <label>Date Issued</label>
+                                        <span id="certDetailDate">Date</span>
+                                    </div>
+                                </div>
+
+                                <div class="cert-detail-meta-item">
+                                    <div class="cert-meta-icon"><i class="fas fa-id-badge"></i></div>
+                                    <div class="cert-meta-content">
+                                        <label>Credential ID</label>
+                                        <span id="certDetailCredentialId">ID</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cert-detail-description">
+                                <h4><i class="fas fa-info-circle"></i> Description</h4>
+                                <p id="certDetailDescription">Certificate description goes here.</p>
+                            </div>
+
+                            <!-- Navigation Arrows -->
+                            <div class="cert-nav-arrows">
+                                <button class="cert-nav-arrow" id="certPrevBtn">
+                                    <i class="fas fa-chevron-left"></i> Previous
+                                </button>
+                                <button class="cert-nav-arrow" id="certNextBtn">
+                                    Next <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
@@ -635,9 +721,10 @@
     <script src="section/gridbox/script.js"></script>
     
     <script src="section/services/script.js"></script>
-    
-    <!-- Contact Form Script -->
     <script src="section/contact/script.js"></script>
+    
+    <!-- Certificate Modal Script -->
+    <script src="js/certificates.js"></script>
     
     <!-- Scroll Animations - Load LAST -->
     <script src="js/scroll-animations.js"></script>
